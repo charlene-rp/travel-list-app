@@ -1,4 +1,3 @@
-// src/components/PackingList.js
 import React from "react";
 import Item from "./Item";
 
