@@ -55,39 +55,45 @@ function App() {
     if (filter === 'unpacked') return !item.packed;
     return true;
   });
-
+  
   return (
     <div className="app">
       <Logo />
       <Form setItems={setItems} />
+ 
+      <div className="controls-container">
+        <div className="actions">
+          <div>
+            <label>Sort By:</label>
+            <select value={sortBy} onChange={handleSortChange}>
+              <option value="inputOrder">Input Order</option>
+              <option value="description">Description</option>
+              <option value="packed">Packed Status</option>
+            </select>
+          </div>
+          <div>
+            <label>Filter:</label>
+            <select value={filter} onChange={handleFilterChange}>
+              <option value="all">All</option>
+              <option value="packed">Packed</option>
+              <option value="unpacked">Unpacked</option>
+            </select>
+          </div>
+          <button onClick={handleClearAllItems} className="clear-button">
+            Clear All
+          </button>
+        </div>
+      </div>
+
       <PackingList
         items={filteredItems}
         onDeleteItem={handleDeleteItem}
         onUpdateItem={handleUpdateItem}
       />
       <Stats items={filteredItems} />
-      
-      <div>
-        <label>Sort By:</label>
-        <select value={sortBy} onChange={handleSortChange}>
-          <option value="inputOrder">Input Order</option>
-          <option value="description">Description</option>
-          <option value="packed">Packed Status</option>
-        </select>
-      </div>
-    
-      <div>
-        <label>Filter:</label>
-        <select value={filter} onChange={handleFilterChange}>
-          <option value="all">All</option>
-          <option value="packed">Packed</option>
-          <option value="unpacked">Unpacked</option>
-        </select>
-      </div>
-
-      <button onClick={handleClearAllItems} className="clear-button">Clear All</button>
     </div>
   );
-}
+  
+};  
 
 export default App;
